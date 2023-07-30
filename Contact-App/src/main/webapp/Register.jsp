@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<%@include file="Component/AllCss.jsp" %>
+<link rel = "stylesheet" href = "alert/dist/sweetalert.css">
+</head>
+<body>
+
+	<%@ include file = "Component/Navbar.jsp" %>
+	
+	<input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
+	<div class="cointainer-fluid mt-5">
+		<div class="row g-3">
+			<div class="col-sm-4 <!-- offset-md-4 -->">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="text-center fw-bold mt-3">Registration Page</h4>
+						<form action = "register" method = "post">
+							<div class="mb-3 col-auto">
+    							<label for="exampleInputName" class="form-label">Name</label>
+    							<input type="text" class="form-control" name="name" id="exampleName" aria-describedby="nameHelp">
+  							</div>
+  							<div class="mb-3">
+    							<label for="exampleInputEmail1" class="form-label">Email address</label>
+    							<input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+  							</div>
+  							<div class="mb-3">
+    							<label for="exampleInputPassword1" class="form-label">Password</label>
+    							<input type="password" class="form-control" name="password" id="exampleInputPassword1">
+  							</div>
+  							<div class="mb-4">
+    							<label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+    							<input type="password" class="form-control" name="confirmPassword" id="exampleInputPassword2">
+  							</div>
+  							<div  class="text-center">
+  								<button type="submit" class="btn" style="background-color: #0000ce; color: #ffff">Register</button>
+  							</div>	
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<%@ include file = "Component/Footer.jsp" %>
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" SameSite="None"></script>
+	<script>
+		const status = document.getElementById("status").value;
+		
+		if(status == "success"){
+			swal("Registered", "Please login to continue", "success");
+		}
+		else if(status == "invalidName"){
+			swal("Invalid", "Please enter correct name", "error");
+		}
+		else if(status == "invalidEmail"){
+			swal("Invalid", "Please enter correct email", "error");
+		}
+		else if(status == "noMatch"){
+			swal("No Match", "password and confirm password must be same", "error");
+		}
+	</script>
+</body>
+</html>
